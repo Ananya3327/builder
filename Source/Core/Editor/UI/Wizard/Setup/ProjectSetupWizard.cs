@@ -31,7 +31,7 @@ namespace VRBuilder.Editor.UI.Wizard
         {
             if (Application.isBatchMode == false)
             {
-                DependencyManager.OnPostProcess += OnDependenciesRetrieved;
+                //DependencyManager.OnPostProcess += OnDependenciesRetrieved;
             }
         }
 
