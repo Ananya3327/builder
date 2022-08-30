@@ -17,6 +17,14 @@ namespace VRBuilder.Editor.Tutorials.HardwareSetup
     //[CreateAssetMenu(fileName = "Hardware Setup Tutorial Settings", menuName = "Tutorial Objects/Hardware Setup Settings", order = 1)]
     public class HardwareSetupTutorialSettingsScriptableObject : ScriptableObject
     {
+        public bool IsStandaloneBuildTargetSelected()
+        {
+            return EditorUserBuildSettings.activeBuildTarget == BuildTarget.StandaloneLinux64 ||
+                EditorUserBuildSettings.activeBuildTarget == BuildTarget.StandaloneOSX ||
+                EditorUserBuildSettings.activeBuildTarget == BuildTarget.StandaloneWindows ||
+                EditorUserBuildSettings.activeBuildTarget == BuildTarget.StandaloneWindows64;
+        }
+
         public bool IsXRManagementInstalled()
         {
 #if UNITY_XR_MANAGEMENT
@@ -38,8 +46,7 @@ namespace VRBuilder.Editor.Tutorials.HardwareSetup
         public bool IsOculusTouchControllerProfileSelected()
         {
 #if OPEN_XR            
-            OpenXRFeature controllerProfile = OpenXRSettings.GetSettingsForBuildTargetGroup(EditorUserBuildSettings.selectedBuildTargetGroup).GetFeature<OculusTouchControllerProfile>();            
-            return controllerProfile != null && controllerProfile.enabled;
+            return OpenXRSettings.GetSettingsForBuildTargetGroup(EditorUserBuildSettings.selectedBuildTargetGroup).GetFeatures<OpenXRInteractionFeature>().Any(f => f.enabled && f is OculusTouchControllerProfile);
 #else
             return false;
 #endif
