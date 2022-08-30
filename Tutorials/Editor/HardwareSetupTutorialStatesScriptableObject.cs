@@ -14,8 +14,8 @@ using UnityEngine.XR.OpenXR.Features.Interactions;
 
 namespace VRBuilder.Editor.Tutorials.HardwareSetup
 {
-    //[CreateAssetMenu(fileName = "Hardware Setup Tutorial Settings", menuName = "Tutorial Objects/Hardware Setup Settings", order = 1)]
-    public class HardwareSetupTutorialSettingsScriptableObject : ScriptableObject
+    //[CreateAssetMenu(fileName = "Hardware Setup Tutorial States", menuName = "Tutorial Objects/Hardware Setup States", order = 1)]
+    public class HardwareSetupTutorialStatesScriptableObject : ScriptableObject
     {
         public bool IsStandaloneBuildTargetSelected()
         {
