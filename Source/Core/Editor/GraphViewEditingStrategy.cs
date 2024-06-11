@@ -51,6 +51,8 @@ namespace VRBuilder.Editor
         /// <inheritdoc/>
         public void HandleProcessWindowClosed(ProcessEditorWindow window)
         {
+            Debug.Log("Process Windows Closed");
+
             if (processWindow != window)
             {
                 return;
@@ -65,6 +67,8 @@ namespace VRBuilder.Editor
         /// <inheritdoc/>
         public void HandleStepWindowClosed(IStepView window)
         {
+            Debug.Log("Step Windows Closed");
+
             if (CurrentProcess != null)
             {
                 ProcessAssetManager.Save(CurrentProcess);
@@ -90,6 +94,8 @@ namespace VRBuilder.Editor
         /// <inheritdoc/>
         public void HandleCurrentProcessChanged(string processName)
         {
+            Debug.Log($"Process Changed to {(processName == string.Empty ? "empty string" : processName)}");
+
             if (CurrentProcess != null && CurrentProcess.Data.Name != processName)
             {
                 ProcessAssetManager.Save(CurrentProcess);
@@ -101,7 +107,9 @@ namespace VRBuilder.Editor
 
         private void LoadProcess(IProcess newProcess)
         {
-            Debug.Log("Loading process in editor");
+            string processName = newProcess?.Data?.Name ?? "null";
+            Debug.Log($"Loading process {processName} in editor");
+
             CurrentProcess = newProcess;
             CurrentChapter = null;
 
@@ -188,6 +196,7 @@ namespace VRBuilder.Editor
         /// <inheritdoc/>
         public void HandleProjectIsGoingToSave()
         {
+            Debug.Log("Project is going to save");
             if (CurrentProcess != null)
             {
                 ProcessAssetManager.Save(CurrentProcess);
@@ -197,6 +206,7 @@ namespace VRBuilder.Editor
         /// <inheritdoc/>
         public void HandleExitingPlayMode()
         {
+            Debug.Log("Exit play mode");
             if (stepWindow != null)
             {
                 stepWindow.ResetStepView();
@@ -206,6 +216,7 @@ namespace VRBuilder.Editor
         /// <inheritdoc/>
         public void HandleEnterPlayMode()
         {
+            Debug.Log("Enter play mode");
         }
 
         /// <inheritdoc/>
