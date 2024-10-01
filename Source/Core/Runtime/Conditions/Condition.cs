@@ -23,7 +23,7 @@ namespace VRBuilder.Core.Conditions
             {
                 LifeCycle.StageChanged += (sender, args) =>
                 {
-                    Debug.LogFormat("{0}<b>Condition</b> <i>'{1} ({2})'</i> is <b>{3}</b>.\n", ConsoleUtils.GetTabs(2), Data.Name, GetType().Name, LifeCycle.Stage);
+                    Debug.Log($"{ConsoleUtils.GetTabs(2)}<b>{GetType().Name}</b> <i>'{Data.Name}'</i> is <b>{LifeCycle.Stage}</b>.\n");
                 };
             }
         }
